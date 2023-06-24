@@ -1,0 +1,4 @@
+docker run --name server <--env-file ./.env> --rm --network foobar -p 6001:6001 server
+docker run --name client --rm --network foobar -p 3000:3000 client
+
+docker network create foobar
