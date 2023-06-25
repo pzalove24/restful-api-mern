@@ -9,9 +9,18 @@ const Todo = (props) => {
   };
   return (
     <div>
-      <p>
-        <span>{props.props.todo} : </span> {props.props.people}
-        <button onClick={() => deleteTodoHandler(props.props._id)}>x</button>
+      <p className="flex flex-col items-center space-x-4 justify-between text-justify mt-3">
+        <span>
+          {props.props.todo} : {props.props.people}
+        </span>
+        <button
+          className="
+          bg-red-700 border border-red-900 p-1 w-full 
+          rounded-md text-white hover:bg-red-500"
+          onClick={() => deleteTodoHandler(props.props._id)}
+        >
+          x
+        </button>
       </p>
     </div>
   );
