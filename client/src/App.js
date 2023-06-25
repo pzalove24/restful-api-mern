@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div
-      className="flex min-h-full flex-col justify-center items-center lg:px-8
+      className="flex min-h-full flex-col inset-0 justify-center items-center lg:px-8
       bg-white border-b border-b-[#e6ebf4]"
     >
       <header 
@@ -73,7 +73,7 @@ function App() {
         <h5 className="text-lg mt-5 font-inter font-medium ">Your todo list</h5>
         <div>{loading ? "loading" : <TodoListView props={todoList} />}</div>
       </div>
-      <h6 className="mt-10">Copyright 2023, All rights reserved &copy;</h6>
+      <h6 className="mt-10 inset-0 bottom-0">Copyright 2023, All rights reserved &copy;</h6>
     </div>
   );
 }

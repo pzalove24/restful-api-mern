@@ -9,10 +9,8 @@ const Todo = (props) => {
   };
   return (
     <div>
-      <p className="flex flex-col items-center space-x-4 justify-between text-justify mt-3">
-        <span>
+      <p className="flex flex-col items-center space-x-4 justify-between text-justify mt-6">
           {props.props.todo} : {props.props.people}
-        </span>
         <button
           className="
           bg-red-700 border border-red-900 p-1 w-full 

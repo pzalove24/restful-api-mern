@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    environment {
+        MONGO_URL=credentials('mongo_url')
+        PORT=credentials('port')
+    }
+
+    stages {
+        stage('Pull SCM') {
+            steps {
+                git url: ''
+            }
+        }
+        stage('Credential export') {
+            steps {
+                echo 'export MONGO_URL=$MONGO_URL'
+                echo 'export PORT = $PORT'
+            }
+        }
+        stage('Login to Docker') {
+            environment {
+                DOCKERHUB_CREDENTIAL = credentials('dockerhubcredentials')
+            }
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIAL_PSW | docker login -u $DOCKERHUB_CREDENTIAL_USR --pasword-stding'
+            }
+        }
+        stage('Remove') {
+            steps {
+                sh 'docker-compose down'
+                sh 'docker image prune -a -f'
+            }
+        }
+        stage('Build and Push cline image to docker hub') {
+            steps {
+                sh 'docker build -t peeratchai24/rest-client:latest client'
+                sh 'docker push peeratchai24/rest-client:latest'
+            }
+        }
+        stage('Deploy by Docker-compose') {
+            steps {
+                sh 'docker-compose -f docker-compose.yml up -d'
+            }
+        }
+    }
+}
